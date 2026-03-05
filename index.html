@@ -120,19 +120,27 @@
 
         /* Hero Section */
         .hero {
-            float: left;
             margin-top: 0;
             height: 85vh;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
                         url(./BayLaHero.png);
             background-color: #00008B;
             background-size: cover;
-            background-position: center;
+            background-position: left;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
         }
+
+    @media (max-width: 750px) {
+        .hero {
+            margin-left: -100px;
+        }
+        h1 {
+            margin-left: 100px;
+        }
+}
 
         .hero-content {
             text-align: center;
