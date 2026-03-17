@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bay La Soul</title>
-    <link href="https://fonts.googleapis.com/css2?family=Yellowtail&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -54,7 +54,7 @@
         }
 
         .nav-container {
-            /* max-width: 1400px; */
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -64,8 +64,8 @@
         .logo {
             font-size: 2.9rem;
             font-weight: bold;
-            color: #FFFFFF;
-            font-family: 'Yellowtail', cursive;
+            color: #ffffff;
+            font-family: 'Playfair Display', serif;
             opacity: 0;
             transition: opacity 0.8s ease;
         }
@@ -86,6 +86,7 @@
             font-size: 1rem;
             transition: color 0.3s;
             font-weight: 500;
+            text-shadow: 0 0 8px #0e0e0e;
         }
 
         .nav-links a:hover {
@@ -116,35 +117,45 @@
             transform-origin: bottom left;
             transform: rotate(-1.55deg);
             z-index: 2;
+            filter: drop-shadow(0 -5px 20px rgba(0,0,0,0.2));
+            box-shadow: none;
         }
 
         /* Hero Section */
         .hero {
             margin-top: 0;
             height: 85vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                        url(./BayLaHero.png);
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 18px,
+                    rgba(0,128,128,0.18) 18px,
+                    rgba(0,128,128,0.18) 20px
+                ),
+                linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                url(./images/BayLaHero.png);
             background-color: #00008B;
-            background-size: cover;
-            background-position: left;
+            background-size: auto, cover, cover;
+            background-position: center;
+            background-attachment: fixed;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            overflow: hidden;
+            z-index: -2;
         }
-
-    @media (max-width: 750px) {
-        .hero {
-            margin-left: -100px;
-        }
-        h1 {
-            margin-left: 100px;
-        }
-}
 
         .hero-content {
             text-align: center;
             color: white;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            pointer-events: none;
         }
 
         .hero h1 {
@@ -164,7 +175,7 @@
             background: #171717;
             color: white;
             text-align: center;
-            padding: 15rem 5%;
+            padding: 9rem 5% 13rem;
             font-family: 'Playfair Display', serif;
         }
 
@@ -185,14 +196,14 @@
             color: #aaaaaa;
         }
 
-        /* Venues Section */
         .venues {
-            padding: 6rem 5%;
+            padding: 3rem 5%;
             background: #9F0026;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.4), 0 5px 20px rgba(0,0,0,0.4);
         }
 
         .section-container {
-            /* max-width: 1200px; */
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -258,6 +269,7 @@
             min-width: 300px;
             max-width: 420px;
             transform: rotate(-5deg);
+            background-color: #00008B;
         }
 
         .chef-bio {
@@ -267,7 +279,7 @@
 
         .chef-bio h3 {
             font-size: 3rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             color: #ffffff;
         }
 
@@ -282,6 +294,7 @@
         .menu-carousel {
             padding: 10rem 0%;
             background: #006847;
+            box-shadow: inset 0 5px 20px rgba(0,0,0,0.4), inset 0 -5px 20px rgba(0,0,0,0.4);
         }
 
         .carousel-container {
@@ -292,7 +305,7 @@
 
         .carousel-track {
             display: flex;
-            gap: 2rem;
+            gap: 3rem;
             overflow-x: auto;
             padding: 2rem 0;
             scrollbar-width: none;
@@ -307,10 +320,10 @@
         }
 
         .menu-card {
-            width: 420px;
-            min-width: 420px;
-            max-width: 420px;
-            background: #0e0e0e;
+            width: 340px;
+            min-width: 340px;
+            max-width: 340px;
+            background: #ffffff;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 5px 20px rgba(0,0,0,0.4);
@@ -322,17 +335,17 @@
         }
 
         .cookbook-card {
-            background: #0e0e0e;
-            color: #ffffff;
+            background: #ffffff;
+            color: #0e0e0e;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 400px;
+            min-height: 320px;
             padding: 2rem 1rem;
             position: relative;
-            border: 7px solid #0e0e0e;
-            box-shadow: inset 0 0 0 3px #006847;
+            border: 4px solid #ffffff;
+            box-shadow: inset 0 0 0 4px #006847, 0 5px 20px rgba(0,0,0,0.4);
         }
 
         .cookbook-inner {
@@ -341,7 +354,7 @@
         }
 
         .cookbook-card h3 {
-            font-size: 3rem;
+            font-size: 2.4rem;
             padding: 0 3rem;
             text-align: left;
             padding: 0;
@@ -352,7 +365,7 @@
             font-weight: 600;
             letter-spacing: 0.05em;
             margin-bottom: 2rem;
-            transform: translateY(-2rem);
+            transform: translateY(0.5rem);
         }
 
         .menu-card.cookbook-card p {
@@ -367,16 +380,16 @@
             color: #0e0e0e;
             font-weight: 300;
             font-style: italic;
-            transform: translateY(-1rem);
+            transform: translateY(0.5rem);
         }
 
         .menu-card-image {
-            height: 260px;
-            background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
+            height: 200px;
+            background: #e0e0e0;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #666;
+            color: #999;
             font-style: italic;
             margin: 0;
             position: relative;
@@ -384,7 +397,7 @@
         }
 
         .menu-card-content {
-            padding: 2rem;
+            padding: 1.5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -397,21 +410,21 @@
             color: white;
             padding: 0;
             border: 4px solid #006847;
-            box-shadow: inset 0 0 0 4px #0e0e0e;
+            box-shadow: inset 0 0 0 4px #ffffff;
             border-radius: 0;
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+            font-size: 1.3rem;
             font-weight: 600;
             text-transform: lowercase;
             cursor: pointer;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            height: 4.5rem;
+            height: 3.5rem;
             width: auto;
-            padding: 0 2.8rem;
+            padding: 0 2.2rem;
             position: relative;
             top: -2px;
         }
@@ -426,20 +439,20 @@
         }
 
         .menu-card-title h4 {
-            font-size: 1.75rem;
+            font-size: 1.4rem;
             margin: 0;
-            color: #ffffff;
-            text-transform: uppercase;
+            color: #0e0e0e;
             line-height: 1.3;
             font-weight: 800;
-            height: calc(1.55rem * 1.3 * 2);
+            height: calc(1.25rem * 1.3 * 2);
             display: flex;
             align-items: center;
             justify-content: center;
+            text-transform: uppercase;
         }
 
         .menu-card p {
-            color: #aaaaaa;
+            color: #444444;
             line-height: 1.6;
         }
 
@@ -466,7 +479,7 @@
         }
 
         .instagram-cta h2 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 2.5rem;
             color: #ffffff;
             font-family: 'Playfair Display', serif;
@@ -486,36 +499,53 @@
 
         .instagram-button:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
         }
 
         /* Footer */
         footer {
             background: #0e0e0e;
             color: white;
-            text-align: center;
-            padding: 2rem 2rem 6rem 2rem;
+            padding: 2rem 3rem;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
             position: relative;
-            height: 200px;
+        }
+
+        .footer-inner {
+            display: contents;
         }
 
         .footer-logo {
-            position: absolute;
-            left: 2rem;
-            top: 1rem;
-            height: 175px;
+            height: 80px;
             width: auto;
         }
 
+        .footer-tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: #555555;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .footer-right {
+            position: absolute;
+            bottom: 0.75rem;
+            right: 3rem;
+            text-align: right;
+        }
+
         .footer-credit {
-            padding-top: 20px;
-            text-decoration-color: #8a0021;
-            color: #e0e0e0;
-            font-size: 1.25rem;
-            font-weight: 200;
+            color: #888888;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-credit:hover {
+            color: #006847;
         }
 
         /* Side Panel */
@@ -525,8 +555,8 @@
             right: -66.666%;
             width: 66.666%;
             height: 100vh;
-            background: #222222;
-            box-shadow: -5px 0 25px rgba(0,0,0,0.6);
+            background: #ffffff;
+            box-shadow: -5px 0 20px rgba(0,0,0,0.4);
             z-index: 2000;
             transition: right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             overflow: hidden;
@@ -556,9 +586,7 @@
             border: none;
             font-size: 3rem;
             cursor: pointer;
-            color: white;
-            transition: opacity 0.3s;
-            z-index: 10;
+            color: #0e0e0e;
             line-height: 1;
             font-weight: 300;
         }
@@ -581,22 +609,21 @@
 
         .panel-title {
             font-size: 2.5rem;
-            color: #ffffff;
-            margin-bottom: 1rem;
-            padding: 1.5rem 3rem 0 3rem;
+            color: #0e0e0e;
             font-family: 'Playfair Display', serif;
             text-decoration: underline;
             text-decoration-color: #006847;
             text-decoration-thickness: 3px;
             text-underline-offset: 2px;
+            padding: 1.5rem 3rem 0 3rem;
+            margin-bottom: 1rem;
         }
 
         .panel-description {
             font-size: 0.9rem;
             line-height: 1.8;
-            color: #aaaaaa;
-            margin-bottom: 2rem;
-            padding: 0 3rem;
+            color: #555555;
+            padding: 0 3rem 1.5rem;
             opacity: 0.8;
             font-style: italic;
         }
@@ -610,9 +637,7 @@
         }
 
         .panel-details h4 {
-            color: #ffffff;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+            color: #0e0e0e;
             text-decoration: underline;
             text-decoration-color: #006847;
             text-decoration-thickness: 2px;
@@ -626,8 +651,7 @@
 
         .panel-details li {
             padding: 0.25rem 0;
-            color: #aaaaaa;
-            position: relative;
+            color: #0e0e0e;
             padding-left: 1.5rem;
         }
 
@@ -741,7 +765,7 @@
             }
 
             .menu-card {
-                min-width: 420px;
+                min-width: 340px;
             }
 
             .side-panel {
@@ -806,7 +830,7 @@
 
     <!-- Tagline -->
     <section class="tagline">
-        <h2>Catering To The <span style="font-family:'Yellowtail',cursive;color:#9F0026;font-size:1.2em;text-transform:uppercase;">Soul</span></h2>
+        <h2>Catering to the Soul</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do.</p>
     </section>
 
@@ -853,7 +877,7 @@
         <div class="section-container">
             <div class="about-content">
                 <div class="chef-image">
-                    <img src="./ChefD.JPG" alt="Chef Darius" width="420px">
+                    <img src="./images/ChefD.JPG" alt="Chef Darius" width="420px">
                 </div>
                 <div class="chef-bio">
                     <h3>About Our Soul</h3>
@@ -872,7 +896,7 @@
                 <div class="menu-card cookbook-card">
                     <div class="cookbook-inner">
                         <h3>the<br>bay la soul cookbook</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipiscing</p>
+                        <p>A collection of some of our favorite recepies, straight from the soul</p>
                     </div>
                 </div>
                 <div class="menu-card">
@@ -953,29 +977,32 @@
 
     <!-- Footer -->
     <footer>
-        <img src="./bayLaSoulLogo.png" alt="Bay La Soul Logo" class="footer-logo" height="200px">
-            <p><a href="./index.html" target="_blank" class="footer-credit">jakelamm.com</a></p>
+        <img src="./images/bayLaSoulLogo.png" alt="Bay La Soul Logo" class="footer-logo">
+        <p class="footer-tagline">Catering to the Soul</p>
+        <div class="footer-right">
+            <p><a href="./index.html" target="_blank" class="footer-credit" style="text-decoration:none;">Jake Lamm</a></p>
+        </div>
     </footer>
 
     <script>
         const menuItems = {
-            cookbook: {
-                title: "The Bay La Soul Cookbook",
-                image: "Our Signature Cookbook",
-                description: "Discover the culinary secrets behind our most beloved dishes. This comprehensive cookbook features over 100 recipes that have made Bay La Soul a Bay Area favorite, from our signature starters to our decadent desserts.",
-                ingredients: [
-                    "100+ - Professionally tested recipes",
-                    "200+ - Full-color food photographs",
-                    "50+ - Step-by-step technique guides",
-                    "75+ - Wine pairing suggestions"
-                ],
-                instructions: [
-                    "Chef's tips and kitchen secrets",
-                    "Seasonal menu planning guides",
-                    "Stories behind our signature dishes",
-                    "Professional plating techniques"
-                ]
-            },
+            // cookbook: {
+            //     title: "The Bay La Soul Cookbook",
+            //     image: "Our Signature Cookbook",
+            //     description: "Discover the culinary secrets behind our most beloved dishes. This comprehensive cookbook features over 100 recipes that have made Bay La Soul a Bay Area favorite, from our signature starters to our decadent desserts.",
+            //     ingredients: [
+            //         "100+ - Professionally tested recipes",
+            //         "200+ - Full-color food photographs",
+            //         "50+ - Step-by-step technique guides",
+            //         "75+ - Wine pairing suggestions"
+            //     ],
+            //     instructions: [
+            //         "Chef's tips and kitchen secrets",
+            //         "Seasonal menu planning guides",
+            //         "Stories behind our signature dishes",
+            //         "Professional plating techniques"
+            //     ]
+            // },
             salmon: {
                 title: "Herb-Crusted Salmon",
                 image: "Herb-Crusted Salmon",
@@ -1131,7 +1158,7 @@
                         ${item.ingredients.map(ingredient => {
                             const parts = ingredient.split(' - ');
                             if (parts.length === 2) {
-                                return `<li><span style="color:#9F0026;font-weight:700;">${parts[0]}</span> <span style="color:#ffffff;">${parts[1]}</span></li>`;
+                                return `<li><span style="color:#9F0026;font-weight:700;">${parts[0]}</span> <span style="color:#0e0e0e;">${parts[1]}</span></li>`;
                             }
                             return `<li>${ingredient}</li>`;
                         }).join('')}
@@ -1140,7 +1167,7 @@
                 <div class="panel-column">
                     <h4 style="color:#000000;">Instructions</h4>
                     <ul style="color:#0e0e0e;">
-                        ${item.instructions.map((instruction, i) => `<li style="color:#0e0e0e;"><span style="color:#9F0026;font-weight:700;position:absolute;left:0;">${i + 1}.</span>${instruction}</li>`).join('')}
+                        ${item.instructions.map((instruction, i) => `<li style="color:#0e0e0e;"><span style="color:#9F0026;font-weight:700;">${i + 1}.</span>${instruction}</li>`).join('')}
                     </ul>
                 </div>
             `;
