@@ -771,7 +771,7 @@
                 word-spacing: normal;
                 white-space: nowrap;
                 line-height: 1;
-                opacity: 1;
+                opacity: 0;
                 font-size: 1.8rem;
             }
 
@@ -784,7 +784,7 @@
             }
 
             nav {
-                background: #0e0e0e;
+                background: transparent;
                 padding: 0.9rem 5% 0.9rem 2%;
                 transition: transform 0.3s ease, background 0.8s ease, box-shadow 0.8s ease;
                 will-change: transform;
@@ -793,8 +793,19 @@
                 -webkit-backface-visibility: hidden;
             }
 
+            nav.scrolled {
+                background: #0e0e0e;
+            }
+
             nav.hide {
                 transform: translateY(-100%) translateZ(0);
+            }
+
+            nav.hide .hamburger {
+                transform: translateY(100%) translateZ(0);
+                position: fixed;
+                top: 1rem;
+                right: 5%;
             }
 
             .nav-links {
@@ -1563,6 +1574,9 @@
             const h = window.innerHeight;
             document.documentElement.style.setProperty('--hero-h', h + 'px');
             document.documentElement.style.setProperty('--spacer-h', Math.round(h * 0.9) + 'px');
+            if (window.innerWidth <= 768) {
+                document.querySelector('nav').classList.add('hide');
+            }
         })();
 
         // Hamburger menu
@@ -1629,6 +1643,11 @@
 
                 if (isMobile) {
                     const delta = currentScrollY - lastScrollY;
+                    if (currentScrollY > 60) {
+                        nav.classList.add('scrolled');
+                    } else {
+                        nav.classList.remove('scrolled');
+                    }
                     if (delta > 5 && currentScrollY > 60) {
                         nav.classList.add('hide');
                         closeHamburger();
