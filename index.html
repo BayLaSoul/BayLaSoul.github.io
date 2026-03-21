@@ -804,8 +804,14 @@
             nav.hide .hamburger {
                 transform: translateY(100%) translateZ(0);
                 position: fixed;
-                top: 1rem;
+                top: 2rem;
                 right: 5%;
+                transition: opacity 0.3s ease;
+            }
+
+            nav.hide.scrolled .hamburger {
+                opacity: 0;
+                pointer-events: none;
             }
 
             .nav-links {
