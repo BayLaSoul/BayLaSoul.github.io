@@ -1558,32 +1558,6 @@
             }
         });
 
-        // Smooth scroll with vertical centering for venues nav link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (!href || !href.startsWith('#')) return;
-                const target = document.querySelector(href);
-                if (!target) return;
-                e.preventDefault();
-
-                const navHeight = document.querySelector('nav').offsetHeight;
-
-                if (href === '#venues') {
-                    // Center the section vertically in the viewport, offset by nav
-                    const sectionTop = target.getBoundingClientRect().top + window.scrollY;
-                    const sectionHeight = target.offsetHeight;
-                    const viewportHeight = window.innerHeight;
-                    let scrollTo = sectionTop - (viewportHeight - sectionHeight) / 2;
-                    scrollTo = Math.max(0, scrollTo);
-                    window.scrollTo({ top: scrollTo, behavior: 'smooth' });
-                } else {
-                    const sectionTop = target.getBoundingClientRect().top + window.scrollY;
-                    window.scrollTo({ top: sectionTop - navHeight, behavior: 'smooth' });
-                }
-            });
-        });
-
         // Lock hero and spacer heights to initial viewport to prevent zoom on scroll
         (function() {
             const h = window.innerHeight;
@@ -1599,19 +1573,45 @@
             const isOpening = !hamburger.classList.contains('open');
             hamburger.classList.toggle('open');
             navLinks.classList.toggle('open');
-
-            if (isOpening) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
+            document.body.style.overflow = isOpening ? 'hidden' : '';
         });
 
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('open');
-                navLinks.classList.remove('open');
-                document.body.style.overflow = '';
+        function closeHamburger() {
+            hamburger.classList.remove('open');
+            navLinks.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // Smooth scroll with vertical centering for all nav links on mobile
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (!href || !href.startsWith('#')) return;
+                const target = document.querySelector(href);
+                if (!target) return;
+                e.preventDefault();
+
+                closeHamburger();
+                nav.classList.add('hide');
+
+                const sectionTop = target.getBoundingClientRect().top + window.scrollY;
+                const sectionHeight = target.offsetHeight;
+                const viewportHeight = window.innerHeight;
+                const isMobile = window.innerWidth <= 768;
+
+                if (isMobile) {
+                    // Center all sections vertically on mobile
+                    let scrollTo = sectionTop - (viewportHeight - sectionHeight) / 2;
+                    scrollTo = Math.max(0, scrollTo);
+                    window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+                } else if (href === '#venues') {
+                    let scrollTo = sectionTop - (viewportHeight - sectionHeight) / 2;
+                    scrollTo = Math.max(0, scrollTo);
+                    window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+                } else {
+                    const navHeight = nav.offsetHeight;
+                    window.scrollTo({ top: sectionTop - navHeight, behavior: 'smooth' });
+                }
             });
         });
 
@@ -1631,6 +1631,7 @@
                     const delta = currentScrollY - lastScrollY;
                     if (delta > 5 && currentScrollY > 60) {
                         nav.classList.add('hide');
+                        closeHamburger();
                     } else if (delta < -10) {
                         nav.classList.remove('hide');
                     }
