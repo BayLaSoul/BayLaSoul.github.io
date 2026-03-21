@@ -1597,9 +1597,17 @@
 
             if (window.innerWidth <= 768) {
                 if (isOpening) {
+                    nav.style.transition = 'none';
                     nav.classList.remove('hide');
+                    requestAnimationFrame(() => {
+                        nav.style.transition = '';
+                    });
                 } else {
+                    nav.style.transition = 'none';
                     nav.classList.add('hide');
+                    requestAnimationFrame(() => {
+                        nav.style.transition = '';
+                    });
                 }
             }
         });
@@ -1609,7 +1617,11 @@
             navLinks.classList.remove('open');
             document.body.style.overflow = '';
             if (window.innerWidth <= 768) {
+                nav.style.transition = 'none';
                 nav.classList.add('hide');
+                requestAnimationFrame(() => {
+                    nav.style.transition = '';
+                });
             }
         }
 
