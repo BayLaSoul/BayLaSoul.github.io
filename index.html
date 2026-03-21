@@ -156,7 +156,7 @@
         /* Hero Section */
         .hero {
             margin-top: 0;
-            height: 100vh;
+            height: var(--hero-h, 100vh);
             width: 100%;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
                         url(BayLaHero.png);
@@ -194,7 +194,7 @@
         }
 
         .hero-spacer {
-            height: 90vh;
+            height: var(--spacer-h, 90vh);
             pointer-events: none;
         }
 
@@ -582,7 +582,7 @@
             top: 0;
             right: -66.666%;
             width: 66.666%;
-            height: 100vh;
+            height: var(--hero-h, 100vh);
             background: #ffffff;
             box-shadow: -5px 0 20px rgba(0,0,0,0.4);
             z-index: 2000;
@@ -711,7 +711,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100vh;
+            height: var(--hero-h, 100vh);
             background: rgba(0,0,0,0.5);
             z-index: 1500;
             opacity: 0;
@@ -1583,6 +1583,13 @@
                 }
             });
         });
+
+        // Lock hero and spacer heights to initial viewport to prevent zoom on scroll
+        (function() {
+            const h = window.innerHeight;
+            document.documentElement.style.setProperty('--hero-h', h + 'px');
+            document.documentElement.style.setProperty('--spacer-h', Math.round(h * 0.9) + 'px');
+        })();
 
         // Hamburger menu
         const hamburger = document.getElementById('hamburger');
