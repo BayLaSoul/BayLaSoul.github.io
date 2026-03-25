@@ -835,15 +835,22 @@
                 top: 1.4rem;
                 right: 5%;
                 z-index: 1100;
-                mix-blend-mode: difference;
             }
 
             .hamburger span {
                 background: var(--white);
             }
 
-            .hamburger.open span:nth-child(1) { background: var(--white); }
-            .hamburger.open span:nth-child(3) { background: var(--white); }
+            .hamburger.nav-visible span {
+                background: var(--black);
+            }
+
+            .hamburger.open span:nth-child(1) { background: var(--black); }
+            .hamburger.open span:nth-child(3) { background: var(--black); }
+
+            .hero {
+                background-position: left center;
+            }
 
             .logo {
                 font-family: 'Playfair Display', serif;
@@ -1324,6 +1331,16 @@
         const navLinks = document.getElementById('navLinks');
         const nav = document.querySelector('nav');
 
+        function updateHamburgerColor() {
+            if (isMobile) {
+                if (!nav.classList.contains('hide')) {
+                    hamburger.classList.add('nav-visible');
+                } else {
+                    hamburger.classList.remove('nav-visible');
+                }
+            }
+        }
+
         hamburger.addEventListener('click', () => {
             const isOpening = !hamburger.classList.contains('open');
             hamburger.classList.toggle('open');
@@ -1334,6 +1351,7 @@
                 if (isOpening) nav.classList.remove('hide');
                 else nav.classList.add('hide');
                 requestAnimationFrame(() => { nav.style.transition = ''; });
+                updateHamburgerColor();
             }
         });
 
@@ -1345,6 +1363,7 @@
                 nav.style.transition = 'none';
                 nav.classList.add('hide');
                 requestAnimationFrame(() => { nav.style.transition = ''; });
+                updateHamburgerColor();
             }
         }
 
@@ -1396,6 +1415,7 @@
                     if (delta > 5 && y > 60) { nav.classList.remove('hide'); }
                     else if (delta < -10 && nav.classList.contains('hide')) { /* already hidden */ }
                     else if (delta < -10 && !hamburger.classList.contains('open')) { nav.classList.add('hide'); }
+                    updateHamburgerColor();
                 } else {
                     const isScrolled = nav.classList.contains('scrolled');
                     if (y > 20 && !isScrolled) nav.classList.add('scrolled');
