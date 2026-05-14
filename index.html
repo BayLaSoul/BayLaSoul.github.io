@@ -459,6 +459,12 @@
             border-radius: 0;
             overflow: hidden;
             box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .menu-card:not(.cookbook-card):hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 36px rgba(0,0,0,0.14);
         }
 
         .menu-card:not(.cookbook-card) {
@@ -659,13 +665,16 @@
             left: 1.5rem;
             background: none;
             border: none;
-            font-size: 2rem;
+            outline: none;
+            font-size: 1.6rem;
             cursor: pointer;
-            color: var(--dark-grey);
+            color: var(--mid-grey);
             transition: color 0.3s;
             z-index: 10;
             line-height: 1;
             font-weight: 300;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 0.05em;
         }
 
         .close-panel:hover { color: var(--red); }
@@ -673,31 +682,43 @@
         .panel-image {
             width: 100%;
             height: 22vh;
-            background: var(--light-grey);
+            background: var(--off-white);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--mid-grey);
             font-style: italic;
             font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.08em;
+            border-bottom: 1px solid var(--mid-grey);
         }
 
         .panel-title {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 700;
             color: var(--black);
-            padding: 1.5rem 3rem 0;
-            margin-bottom: 0.6rem;
+            padding: 1.8rem 3rem 0;
+            margin-bottom: 0.4rem;
             font-family: 'Playfair Display', serif;
             text-transform: uppercase;
             letter-spacing: 0.06em;
+            line-height: 1.1;
+        }
+
+        .panel-title-rule {
+            width: 40px;
+            height: 2px;
+            background: var(--red);
+            margin: 0.8rem 3rem 0;
         }
 
         .panel-description {
-            font-size: 0.95rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
             line-height: 1.9;
             color: #8a7e74;
-            padding: 0 3rem 1.5rem;
+            padding: 1rem 3rem 1.5rem;
             font-style: italic;
             font-weight: 300;
         }
@@ -712,10 +733,13 @@
         .panel-details h4 {
             color: var(--black);
             margin-bottom: 1rem;
-            font-size: 1.1rem;
+            font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.18em;
+            font-family: 'Cormorant Garamond', serif;
+            border-bottom: 1px solid var(--light-grey);
+            padding-bottom: 0.5rem;
         }
 
         .panel-details ul {
@@ -724,22 +748,24 @@
         }
 
         .panel-details li {
-            padding: 0.2rem 0;
+            padding: 0.35rem 0;
             color: var(--dark-grey);
-            font-size: 0.95rem;
-            line-height: 1.7;
+            font-size: 1rem;
+            line-height: 1.6;
+            font-family: 'Cormorant Garamond', serif;
+            border-bottom: 1px solid var(--off-white);
         }
+
+        .panel-details li:last-child { border-bottom: none; }
 
         .panel-details li:before {
             content: "";
-            position: absolute;
-            left: 0;
         }
 
         .panel-column { display: flex; flex-direction: column; }
 
         .panel-column:last-child {
-            background: var(--white);
+            background: var(--off-white);
             padding: 1.5rem;
             border: 1.5px solid var(--green);
         }
@@ -969,6 +995,11 @@
                 max-width: 260px;
             }
 
+            .menu-card:not(.cookbook-card):hover {
+                transform: none;
+                box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            }
+
             .menu-card-image { height: 150px; }
             .menu-card-title { padding: 1rem 1rem 0.5rem; }
             .menu-card-title h4 { font-size: 1rem; height: auto; }
@@ -987,10 +1018,11 @@
 
             .side-panel { width: 92%; right: -92%; }
 
-            .panel-title { font-size: 1.6rem; padding: 1.2rem 1.5rem 0; }
-            .panel-description { padding: 0 1.5rem 1rem; font-size: 0.85rem; }
+            .panel-title { font-size: 1.5rem; padding: 1.2rem 1.5rem 0; }
+            .panel-title-rule { margin: 0.6rem 1.5rem 0; }
+            .panel-description { padding: 0.8rem 1.5rem 1rem; font-size: 0.95rem; }
             .panel-details { grid-template-columns: 1fr; gap: 1.5rem; padding: 0 1.5rem 2rem; }
-            .close-panel { font-size: 1.8rem; }
+            .close-panel { font-size: 1.4rem; }
 
             footer {
                 padding: 1.2rem 1.5rem;
@@ -1185,6 +1217,7 @@
         <div class="side-panel-content">
             <div class="panel-image" id="panelImage"></div>
             <h3 class="panel-title" id="panelTitle"></h3>
+            <div class="panel-title-rule"></div>
             <p class="panel-description" id="panelDescription"></p>
             <div class="panel-details" id="panelDetails"></div>
         </div>
